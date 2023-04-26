@@ -1,7 +1,7 @@
 const Wappalyzer = require('wappalyzer')
 const {wappalyzerModel} = require('../Model/wappalyzerModel');
-const { models } = require('mongoose');
-const { urlencoded } = require('body-parser');
+
+
 const getTechnologie = async (req, res) => {
   try{
     const options = {
@@ -10,7 +10,7 @@ const getTechnologie = async (req, res) => {
       headers: {},
       maxDepth: 3,
       maxUrls: 10,
-      maxWait: 10000,
+      maxWait: 30000,
       recursive: true,
       probe: false,
       proxy: false,
