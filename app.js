@@ -9,6 +9,7 @@ const env = require('dotenv').config();
 const router = require('./Router/wappalyzerRouter')
 const dnsRouter = require('./Router/dnsRouter')
 const managedRouter = require('./Router/manageRouter')
+const sitemap = require('./Router/sitemapRouter')
 app.use(express.static('public'))
 
 app.use(fileUplod({
@@ -19,6 +20,7 @@ app.use(morgan("dev"));
 app.use("/api",router)
 app.use("/api", dnsRouter)
 app.use("/api", managedRouter)
+app.use("/api", sitemap)
 
 
 const url = `mongodb+srv://${process.env.DB_username}:${process.env.DB_password}@cluster0.l162asa.mongodb.net/Wappzlyzer`;
