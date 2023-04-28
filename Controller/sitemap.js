@@ -11,9 +11,21 @@ const getSitemap = (req, res) => {
             console.error(error);
             return res.status(500).json({status: "failed", messege:'Internal Server Error'});
           }
-          res.status(200).json({
+          const dataArray = [];
+          const len = result.urlset.url
+          console.log(len.length)
+          for(var i = 0; i < (result.urlset.url).length; i++){
+            dataArray.push({
+                "url" : result.urlset.url[i].loc[0],
+                "lastModified":result.urlset.url[i].lastmod[0],
+	            "priority": result.urlset.url[i].priority[0],
+	            "changefreq": result.urlset.url[i].changefreq[0]
+            })
+          }
+          console.log(dataArray)
+        return res.status(200).json({
             status: "success",
-            result : result
+            result : dataArray
           });
         });
       })
