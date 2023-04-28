@@ -1,7 +1,8 @@
 const sitemapRouter = require('express').Router()
-const {getSitemaps} = require('../Controller/sitemap')
+const {getSitemap} = require('../Controller/sitemap')
 
 
-sitemapRouter.get("/sitemap/value", getSitemaps)
+sitemapRouter.get("/sitemap/value", getSitemap)
+
 
 module.exports = sitemapRouter
