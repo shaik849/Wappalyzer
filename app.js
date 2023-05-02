@@ -4,6 +4,7 @@ const fileUplod = require('express-fileupload')
 const base64 = require('node-base64-image');
 const bodyParser = require('body-parser')
 const morgan = require('morgan');
+const cors = require('cors')
 const mongoose = require('mongoose')
 const env = require('dotenv').config();
 const router = require('./Router/wappalyzerRouter')
@@ -12,11 +13,13 @@ const managedRouter = require('./Router/manageRouter')
 const sitemap = require('./Router/sitemapRouter')
 app.use(express.static('public'))
 
+
 app.use(fileUplod({
 }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cors())
 app.use("/api",router)
 app.use("/api", dnsRouter)
 app.use("/api", managedRouter)
@@ -35,5 +38,5 @@ mongoose.connect(url, {
 
 
 app.listen(process.env.PORT, ()=>{
-    console.log('listening on port 3000')
+    console.log('listening on port ' + process.env.PORT);
 })
