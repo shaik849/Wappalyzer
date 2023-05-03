@@ -1,12 +1,12 @@
 const sitemapRouter = require('express').Router()
-const {getSitemap, getSitemapUsingUrl, getSitemapUsingUr} = require('../Controller/sitemap')
-const {getSitemapUsingUrls} = require('../Controller/trails')
+
+const {getSitemap, findSitemapUsingUrls} = require('../Controller/sitemap')
+
 
 
 sitemapRouter.get("/sitemap/value", getSitemap)
-sitemapRouter.get("/sitemap/get", getSitemapUsingUrl)
-sitemapRouter.get("/sitemap/get/final", getSitemapUsingUr)
-sitemapRouter.get("/sitemap/get/fina", getSitemapUsingUrls)
+
+sitemapRouter.get("/sitemap/get/finals", findSitemapUsingUrls)
 
 
 
