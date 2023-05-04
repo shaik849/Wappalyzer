@@ -103,7 +103,7 @@ const findSitemapUsingUrls = async (req, res) => {
 
     return res
       .status(200)
-      .json({ status: "success", url: req.query.url, result: finalArray });
+      .json({ status: "success",size: finalArray.length ,url: req.query.url, result: finalArray });
     }
     else{
         const dataArray = [];
@@ -116,7 +116,7 @@ const findSitemapUsingUrls = async (req, res) => {
             changefreq: result.urlset.url[i].changefreq || "",
           });
         }
-        return res.status(200).json({ status: "success", url: req.query.url, result: dataArray });
+        return res.status(200).json({ status: "success",size: dataArray.length, url: req.query.url, result: dataArray });
     }
   } catch (error) {
     console.error(error);
