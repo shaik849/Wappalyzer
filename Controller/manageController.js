@@ -78,6 +78,7 @@ const getManageData = async (req, res) => {
     }
 }
 
+
 module.exports = {
     createManageData: createManageData,
     getManageData : getManageData

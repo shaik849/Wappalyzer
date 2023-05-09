@@ -1,29 +1,35 @@
 const express = require('express')
 const app = express();
 const fileUplod = require('express-fileupload')
-const base64 = require('node-base64-image');
 const bodyParser = require('body-parser')
+const base64 = require('node-base64-image');
 const morgan = require('morgan');
 const cors = require('cors')
 const mongoose = require('mongoose')
 const env = require('dotenv').config();
-const router = require('./Router/wappalyzerRouter')
-const dnsRouter = require('./Router/dnsRouter')
-const managedRouter = require('./Router/manageRouter')
-const sitemap = require('./Router/sitemapRouter')
-app.use(express.static('public'))
-
 
 app.use(fileUplod({
 }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
+
+const router = require('./Router/wappalyzerRouter')
+const dnsRouter = require('./Router/dnsRouter')
+const managedRouter = require('./Router/manageRouter')
+const sitemap = require('./Router/sitemapRouter')
+const csvRouter = require('./Router/csvRouter')
+app.use(express.static('public'))
+
+
 app.use(morgan("dev"));
 app.use(cors())
 app.use("/api",router)
 app.use("/api", dnsRouter)
 app.use("/api", managedRouter)
 app.use("/api", sitemap)
+app.use("/api", csvRouter)
+
+
 
 
 const url = `mongodb+srv://${process.env.DB_username}:${process.env.DB_password}@cluster0.l162asa.mongodb.net/Wappzlyzer`;

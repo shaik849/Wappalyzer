@@ -1,0 +1,132 @@
+S.No,Task,Sub Task
+1,Introduction & Setup,
+2,Node js Basics,
+,,Basics of Nodejs
+,,"Variables let,var and const"
+,,modules & require
+3,Clients & Server,
+,,Client & Server
+,,Ip address & domains
+,,Creating a server
+,,localhost & port number
+,,
+4,Request & Response,
+,,Request Object
+,,Response Object
+,,Returning html pages
+,,Basic Routing
+,,Status Code
+,,Redirects
+,,
+5,Nodemon,
+,,Installation
+,,Installing packae globally
+,,Package.json file
+,,dependencies & Sharing Code
+,,
+6,expressjs,
+,,express introduction
+,,create express app
+,,routing & html pages
+,,redirects & 404 pages
+,,
+7,View Engine,
+,,Ejs View engine
+,,Passing data into views
+,,Partials
+,,Adding CSS
+,,
+8,Middleware,
+,,Middleware
+,,using next()
+,,3rd party files
+,,static files
+,,
+9,Mongodb,
+,,intro to mongodb
+,,mongodb with atlas
+,,mongoose
+,,getting & saving data
+,,outputting in documentation in views
+,,
+10,,
+,Requests,
+,,requests types
+,,post requests
+,,route parameters
+,,delete requests
+,,
+11,,
+,Express Router & MVC,
+,,express router
+,,MVC Basics
+,,Controller
+,,
+12,,
+,Adding Authentication,
+,,Learning JWT
+,,Create a new Source
+,,Default Authentication
+,,Bcrypt for Password
+,,Register
+,,
+13,,
+,Authentication,
+,,Postman
+,,Login API
+,,Middleware
+,,Restrict Requests
+,,
+14,,
+,Create Posts,
+,,Post Create API
+,,File upload
+,,Post list API
+,,
+15,,
+,Comment,
+,,Understand Nested Schema
+,,Comment Post API
+,,Like Post
+,,Comment List API
+,,
+16,Optimization,
+,,Search post
+,,Add Pagination 
+,,Export Post Details
+,,
+17,Optimization,
+,,Search Comment
+,,Export Comment Details
+,,
+18,Mongodb function,
+,,PUSH
+,,PULL
+,,SET
+,,Aggregation Functions
+,,
+19,Function,
+,,Map
+,,for .. of
+,,Promise
+,,Async and Await
+,,Try
+,,Catch
+,,
+20,S3,
+,,File upload in S3
+,,Get file in S3
+,,Remove file in S3
+,,
+21,,
+,Mail Functionality,
+,,Sending Emails using view engine
+,,
+22,,
+,Code Standard,
+,Git Understand,
+,,
+,,
+Reference,,
+,https://www.udemy.com/course/nodejs-the-complete-guide/,
+,https://www.youtube.com/watch?v=zb3Qk8SG5Ms&t=2s,
