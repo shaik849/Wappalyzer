@@ -16,7 +16,7 @@ const csvSchema = new Schema({
             type : String
            }
     }]
-})
+}, {timestamps : true})
 
 const csvModel = mongoose.model('CSV', csvSchema);
 

@@ -1,54 +1,19 @@
+const {sitemapModel} = require('../Model/sitemapModel')
 const axios = require('axios');
 const xml2js = require('xml2js');
 const parseString = require('xml2js').parseString;
-const getSitemap = (req, res) => {
+const getSitemap = async (req, res) => {
     try{
-        const finalArray = []
-    let url = req.query.url
-    const sitemapUrl = url;
-    axios.get(sitemapUrl)
-      .then(response => {
-        xml2js.parseString(response.data, (error, result) => {
-          if (error) {
-            return res.status(500).json({status: "failed", messege:'Internal Server Error'});
+      const id = req.params.id
+      if(id){
+         const findResult = await sitemapModel.findOne({_id :id})
+          if(findResult){
+          return res.status(200).json({status: "success", result : findResult})
           }
-          const dataArray = [];
-          if(result.sitemapindex){
-            for(var i = 0; i < (result.sitemapindex.sitemap).length; i++){
-                dataArray.push({
-                    "url" :result.sitemapindex.sitemap[i].loc
-                })
-            }
-            return res.status(200).json({
-                status: "success",
-                result : dataArray
-              });
-          }
-          else{
-          for(var i = 0; i < (result.urlset.url).length; i++){
-            dataArray.push({
-                url : result.urlset.url[i].loc[0],
-                lastModified:result.urlset.url[i].lastmod,
-	            "priority": result.urlset.url[i].priority,
-	            "changefreq": result.urlset.url[i].changefreq,
-                // "image:image" : result.urlset.url[i].image:image
-            })
-          }
-        }
-          finalArray.push({array:dataArray})
-         return res.status(200).json({
-            status: "success",
-            url : req.query.url,
-            result : finalArray
-          });
-        });
-      })
-      .catch(error => {
-        console.error(error);
-        return res.status(500).json({status: "failed", messege:'Internal Server Error'});
-
-      });
-    }
+          return res.status(500).json({status : "failed", messege: "Data not found"})
+      }
+      return res.status(500).json({status : "failed", messege: "Id not found"})
+    }  
     catch(error) {
         return res.status(500).json({status : "failed", messege: error.message})
     }
@@ -93,17 +58,24 @@ const findSitemapUsingUrls = async (req, res) => {
             url: url.loc[0] || "",
             lastModified: url.lastmod || "",
             priority: url.priority || "",
+            status: 'Active',
+            type: 'XML',
             changefreq: url.changefreq || "",
           }));
         } else {
-          return [];
         }
       })
-      .flat();
-
+      .flat(); 
+      console.log(finalArray[1].url)
+      const finalResult = new sitemapModel({
+        url: req.query.url,
+        size : finalArray.length,
+        sitemap : finalArray
+      })
+      await finalResult.save();
     return res
       .status(200)
-      .json({ status: "success",size: finalArray.length ,url: req.query.url, result: finalArray });
+      .json({ status: "success",result: "sitemap data saved Successfully" });
     }
     else{
         const dataArray = [];
@@ -113,10 +85,20 @@ const findSitemapUsingUrls = async (req, res) => {
             url: result.urlset.url[i].loc[0] || "",
             lastModified: result.urlset.url[i].lastmod || "",
             priority: result.urlset.url[i].priority || "",
+            status: 'Active',
+            type: 'XML',
             changefreq: result.urlset.url[i].changefreq || "",
           });
         }
-        return res.status(200).json({ status: "success",size: dataArray.length, url: req.query.url, result: dataArray });
+        const finalResult = new sitemapModel({
+          url: req.query.url,
+          size : dataArray.length,
+          sitemap : dataArray
+        })
+        await finalResult.save();
+      return res
+        .status(200)
+        .json({ status: "success",result: "sitemap data saved Successfully" });
     }
   } catch (error) {
     console.error(error);

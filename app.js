@@ -18,6 +18,9 @@ const dnsRouter = require('./Router/dnsRouter')
 const managedRouter = require('./Router/manageRouter')
 const sitemap = require('./Router/sitemapRouter')
 const csvRouter = require('./Router/csvRouter')
+const levelRouter = require('./Router/levelRouter')
+const visualRouter = require('./Router/visualRouter')
+const pageauditRouter = require('./Router/pageauditRouter')
 app.use(express.static('public'))
 
 
@@ -28,6 +31,9 @@ app.use("/api", dnsRouter)
 app.use("/api", managedRouter)
 app.use("/api", sitemap)
 app.use("/api", csvRouter)
+app.use("/api", levelRouter)
+app.use("/api", visualRouter)
+app.use("/api", pageauditRouter)
 
 
 

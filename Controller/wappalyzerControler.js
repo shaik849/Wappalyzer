@@ -121,6 +121,8 @@ catch (error) {
 
 }
 
+
+
 module.exports = {
     getTechnologie: getTechnologie,
     getTechnologiesById : getTechnologiesById
