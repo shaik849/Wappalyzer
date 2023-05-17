@@ -1,6 +1,7 @@
 const pageauditRouter = require('express').Router();
-const {pageAudit, getLighthouseDetails} = require('../Controller/pageAudit')
+const { getLighthouseMobileDetail, getLighthouseDesktopDetail} = require('../Controller/pageAudit')
 // pageauditRouter.get('/page/pageAudit', pageAudit);
-pageauditRouter.get('/page/pageAudit/one', getLighthouseDetails);
+pageauditRouter.post('/page/pageAudit/mobile', getLighthouseMobileDetail);
+pageauditRouter.post('/page/pageAudit/desktop', getLighthouseDesktopDetail);
 
 module.exports = pageauditRouter

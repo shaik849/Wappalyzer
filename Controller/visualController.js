@@ -72,13 +72,13 @@ const getVisulasData = async (req, res) =>{
           }
             }
        }
-       return res.json({data : finalArray})
+       return res.status(200).json({data : finalArray})
     }
-    return res.status(404).json({status: 'error', message: 'Id required'})
+    return res.status(400).json({status: 'error', message: 'Id required'})
   }
   catch(err){
     console.error(err)
-    return res.status(404).json({status: 'error', message: err.message})
+    return res.status(400).json({status: 'error', message: err.message})
   }
 }
 
