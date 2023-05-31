@@ -21,19 +21,30 @@ const csvRouter = require('./Router/csvRouter')
 const levelRouter = require('./Router/levelRouter')
 const visualRouter = require('./Router/visualRouter')
 const pageauditRouter = require('./Router/pageauditRouter')
+const screenshortRouter = require('./Router/screenshortRouter')
+const dynamicRouter = require('./Router/dynamicDataRouter')
+const validationRouter = require('./Router/validationRouter')
+const websiteRouter = require('./Router/websiteRouter')
+const vocherRouter = require('./Router/vochereRouter')
 app.use(express.static('public'))
 
 
 app.use(morgan("dev"));
 app.use(cors())
 app.use("/api",router)
+app.use("/api", pageauditRouter)
 app.use("/api", dnsRouter)
 app.use("/api", managedRouter)
 app.use("/api", sitemap)
 app.use("/api", csvRouter)
 app.use("/api", levelRouter)
 app.use("/api", visualRouter)
-app.use("/api", pageauditRouter)
+app.use("/api", screenshortRouter)
+app.use("/api", dynamicRouter)
+app.use("/api", validationRouter)
+app.use("/api", websiteRouter)
+app.use("/api", vocherRouter)
+
 
 
 
