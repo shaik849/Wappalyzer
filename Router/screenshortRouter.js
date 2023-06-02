@@ -1,7 +1,9 @@
 const screenshortRouter = require('express').Router()
 
-const {createScreenshort} = require('../Controller/screenshortController')
+const {createScreenshot, createScreenshost, screenshot} = require('../Controller/screenshortController')
 
-screenshortRouter.post('/screenshort/data', createScreenshort )
+screenshortRouter.post('/screenshort/data', createScreenshot )
+screenshortRouter.post('/screenshort/data/play', createScreenshost )
+screenshortRouter.post('/screenshort/shot', screenshot )
 
 module.exports = screenshortRouter
