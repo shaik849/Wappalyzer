@@ -26,6 +26,8 @@ const dynamicRouter = require('./Router/dynamicDataRouter')
 const validationRouter = require('./Router/validationRouter')
 const websiteRouter = require('./Router/websiteRouter')
 const vocherRouter = require('./Router/vochereRouter')
+const checklistRouter = require('./Router/checkListRouter');
+const playbookRouter = require('./Router/playbookRouter');
 app.use(express.static('public'))
 
 
@@ -44,6 +46,8 @@ app.use("/api", dynamicRouter)
 app.use("/api", validationRouter)
 app.use("/api", websiteRouter)
 app.use("/api", vocherRouter)
+app.use("/api", checklistRouter)
+app.use("/api", playbookRouter)
 
 
 

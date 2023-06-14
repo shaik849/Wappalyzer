@@ -13,8 +13,6 @@ const screenshot = async (req, res) => {
     
     await page.emulateMediaType(null);
     const bodyHandle = await page.$('body');
-    const { height } = await bodyHandle.boundingBox();
-    const boundingBox = await bodyHandle.boundingBox();
     await bodyHandle.dispose();
 
   
@@ -31,7 +29,7 @@ const screenshot = async (req, res) => {
         await new Promise((resolve, reject) => {
           let totalHeight = 0;
           const distance = 100;
-          const delay = 500; // Delay between each scroll in milliseconds
+          const delay = 200; // Delay between each scroll in milliseconds
     
           const timer = setInterval(() => {
             const scrollHeight = document.documentElement.scrollHeight;
@@ -44,7 +42,7 @@ const screenshot = async (req, res) => {
               console.log('Scrolling complete');
               resolve();
             }
-          }, 500);
+          }, delay);
         });
         document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
       });

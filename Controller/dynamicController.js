@@ -51,7 +51,6 @@ const deleteHeader = async (req, res) =>{
             await rowmodel.updateMany(
               { $unset: { [`value.${id}`]: '' } }
             );
-            console.log("Object successfully deleted");
           } catch (err) {
             console.error(err);
             // Handle the error
@@ -93,7 +92,7 @@ const updateHeader = async (req, res) => {
               value: value[i].value
             });
           }
-          const updateResult = await dynamicModel.findOneAndUpdate(
+          await dynamicModel.findOneAndUpdate(
             { _id: id },
             {
               $set: {
@@ -124,7 +123,7 @@ const updateHeader = async (req, res) => {
         fieldType === 'Checkbox' ||
         fieldType === 'Datepicker'
       ) {
-        const updateResult = await dynamicModel.findOneAndUpdate(
+       await dynamicModel.findOneAndUpdate(
           { _id: id },
           {
             $set: {
@@ -142,7 +141,6 @@ const updateHeader = async (req, res) => {
         }
         return res.status(200).json({ status: 'success', message: 'Header successfully updated' });
       }
-      console.log(fieldType);
       return res.status(400).json({
         status: 'error',
         message: "Invalid fieldType. Accepted values: ['Textbox','URL','Email', 'Singleselect', 'Multiselect', 'Textarea', 'Checkbox', 'Datepicker']"

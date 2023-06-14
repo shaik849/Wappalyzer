@@ -2,7 +2,6 @@ const dynamicModel = require('../Model/dynamicDataModel')
 const rowmodel = require('../Model/valuesModel')
 
 const dynamicData = async (req, res) => {
-  console.log(req.body.wes)
     try{
       const name =req.body.name
       const fieldType = req.body.fieldType
@@ -67,7 +66,6 @@ const getDynamicHeaders = async (req, res) => {
     if (id && _id) {
       const findDynamic = await rowmodel.findOne({ _id: _id });
       const result = await dynamicModel.findOne({ _id: id });
-
       if (findDynamic && result && (data !== "" || data === " ")) {
         if (result.fieldType === "URL") {
           function validateURL(url) {
@@ -161,8 +159,9 @@ const getDynamicHeaders = async (req, res) => {
 
         if (result.fieldType === "Multiselect") {
           const resultData = await dynamicModel.findOne({ _id: id });
+          console.log(resultData)
           const myData = [];
-
+         console.log(data)
           for (let i = 0; i < resultData.options.length; i++) {
             if (data.includes(resultData.options[i].label)) {
               const result = resultData.options[i].value;
@@ -217,7 +216,6 @@ const getDynamicHeaders = async (req, res) => {
           }
         }
       }
-
       return res
         .status(400)
         .json({ status: "error", message: "data not found" });
@@ -238,13 +236,12 @@ async function getData(id,_id ,data) {
   try {
     console.log(id)
     const findData = await rowmodel.findOne({ _id: _id });
-    console.log(findData)
     if (findData == null) {
       return { status: "error", message: "Table not found" };
     } 
     else {
-      const updateResult = await rowmodel.findOneAndUpdate(
-        { headerId : id, _id: _id },
+        await rowmodel.findOneAndUpdate(
+        { _id: _id },
         { $set: { [`value.${id}`]: data } },
         { upsert: true, new: true }
       );

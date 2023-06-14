@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const {getTechnologie, getTechnologiesById} = require('../Controller/wappalyzerControler')
+const {postTechnoligies, getTechnologiesById} = require('../Controller/wappalyzerControler')
 
-router.get('/', getTechnologie)
 router.get('/id/:id', getTechnologiesById)
+router.post('/tech',postTechnoligies )
 
 module.exports = router
